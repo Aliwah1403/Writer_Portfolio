@@ -1,11 +1,7 @@
-import { Hero228 } from "./components/hero228";
+import { Outlet } from "react-router";
 
 function App() {
-  return (
-    <div className="flex items-center justify-center">
-      <Hero228 />
-    </div>
-  );
+  return <Outlet />;
 }
 
 export default App;
