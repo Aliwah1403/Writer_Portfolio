@@ -10,7 +10,7 @@ const Layout = () => {
       <Header />
       <main className='grow'>
         <Outlet />
-        {/* <NavigationDock /> */}
+        <NavigationDock />
       </main>
       <Footer />
     </div>
