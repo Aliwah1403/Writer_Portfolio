@@ -12,6 +12,7 @@ import {
 import { cn } from "@/lib/utils";
 import { Dock, DockIcon } from "../ui/navigation-dock";
 import { Link } from "react-router";
+import { AdvancedThemeToggler } from "../AdvancedThemeToggler";
 
 const Icons = {
   calendar: (props) => <CalendarIcon {...props} />,
@@ -137,6 +138,17 @@ export function NavigationDock() {
               </Tooltip>
             </DockIcon>
           ))}
+          <Separator orientation='vertical' className='h-full py-2' />
+          <DockIcon>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <AdvancedThemeToggler />
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Theme</p>
+              </TooltipContent>
+            </Tooltip>
+          </DockIcon>
         </Dock>
       </TooltipProvider>
     </div>
