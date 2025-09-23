@@ -40,7 +40,7 @@ const Footer8 = ({
       <div className='container'>
         <footer>
           <div className='grid grid-cols-4 justify-between gap-10 lg:grid-cols-6 lg:text-left'>
-            <div className='col-span-4 flex w-full flex-col gap-6 lg:col-span-2'>
+            <div className='col-span-5 flex w-full flex-col gap-6 lg:col-span-3'>
               {/* Logo */}
               <div className='flex items-center gap-2 lg:justify-start'>
                 <a href='https://shadcnblocks.com'>
