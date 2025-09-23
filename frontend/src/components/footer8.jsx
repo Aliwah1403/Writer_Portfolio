@@ -2,29 +2,29 @@ import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import DummyLogo from "@/assets/dummy_logo1.svg";
 
 const sections = [
   {
-    title: "Product",
+    title: "Useful Links",
     links: [
-      { name: "Overview", href: "#" },
-      { name: "Pricing", href: "#" },
-      { name: "Marketplace", href: "#" },
-      { name: "Features", href: "#" },
-      { name: "Integrations", href: "#" },
-      { name: "Marketing", href: "#" },
+      { name: "Home", href: "#" },
+      { name: "About Me", href: "#" },
+      { name: "Writings", href: "#" },
+      { name: "Art", href: "#" },
+      { name: "Contact Me", href: "#" },
     ],
   },
-  {
-    title: "Company",
-    links: [
-      { name: "About", href: "#" },
-      { name: "Team", href: "#" },
-      { name: "Blog", href: "#" },
-      { name: "Careers", href: "#" },
-      { name: "Contact", href: "#" },
-    ],
-  },
+  // {
+  //   title: "Company",
+  //   links: [
+  //     { name: "About", href: "#" },
+  //     { name: "Team", href: "#" },
+  //     { name: "Blog", href: "#" },
+  //     { name: "Careers", href: "#" },
+  //     { name: "Contact", href: "#" },
+  //   ],
+  // },
 ];
 
 const Footer8 = ({
@@ -32,7 +32,7 @@ const Footer8 = ({
     url: "https://www.shadcnblocks.com",
     src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/shadcnblockscom-icon.svg",
     alt: "logo",
-    title: "Shadcnblocks.com",
+    // title: "Writer Web",
   },
 }) => {
   return (
@@ -45,17 +45,16 @@ const Footer8 = ({
               <div className='flex items-center gap-2 lg:justify-start'>
                 <a href='https://shadcnblocks.com'>
                   <img
-                    src={logo.src}
-                    alt={logo.alt}
-                    title={logo.title}
+                    src={DummyLogo}
+                    // alt={logo.alt}
+                    // title={logo.title}
                     className='h-8'
                   />
                 </a>
                 <h2 className='text-xl font-semibold'>{logo.title}</h2>
               </div>
               <p className='text-muted-foreground'>
-                A collection of 100+ responsive HTML templates for your startup
-                business or side project.
+                I write hilarious and heartwarming pieces
               </p>
               <ul className='flex items-center space-x-6'>
                 <li className='font-medium duration-200 hover:scale-110 hover:text-muted-foreground'>

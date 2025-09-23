@@ -7,7 +7,7 @@ import { Footer8 } from "../components/footer8";
 
 const Layout = () => {
   return (
-    <div className='flex flex-col items-center min-h-screen'>
+    <div className='flex flex-col  min-h-screen'>
       {/* <Header /> */}
       <main className='grow'>
         <Outlet />
