@@ -3,16 +3,18 @@ import Header from "../pages/homepage/header/Header";
 import Footer from "../pages/homepage/footer/Footer";
 import { Outlet } from "react-router";
 import { NavigationDock } from "../components/Navigation/NavigationnDock";
+import { Footer8 } from "../components/footer8";
 
 const Layout = () => {
   return (
     <div className='flex flex-col items-center min-h-screen'>
-      <Header />
+      {/* <Header /> */}
       <main className='grow'>
         <Outlet />
         <NavigationDock />
       </main>
-      <Footer />
+      <Footer8 />
+      {/* <Footer /> */}
     </div>
   );
 };
