@@ -117,12 +117,7 @@ const Footer8 = ({
               </span>
               © All rights reserved.
             </p>
-            <p>
-              Made with ❤️ by{" "}
-              <a href='https://x.com/ausrobdev' className='text-primary'>
-                @ausrobdev
-              </a>
-            </p>
+            <p>Made with ❤️ for readers everywhere.</p>
           </div>
         </footer>
       </div>

@@ -17,7 +17,7 @@ const Cta23 = () => {
 
           {/* Heading */}
           <h4 className='mt-4 text-2xl font-semibold tracking-tight md:text-center md:text-3xl xl:text-4xl'>
-            Subscribe to our newsletter
+            Subscribe to my newsletter
           </h4>
 
           {/* Description */}

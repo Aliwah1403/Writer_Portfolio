@@ -62,22 +62,19 @@ const Gallery30 = () => {
   }, []);
 
   return (
-    <section className="relative h-full w-screen overflow-hidden py-32 md:h-screen">
-      <div
-        className="container relative flex h-full w-full flex-col items-center justify-center">
-        <div className="relative z-10 flex flex-col items-center justify-center gap-5">
-          <h1
-            className="max-w-xl text-center text-4xl font-medium uppercase tracking-tighter lg:text-6xl">
-            exclusive shadcnblocks
+    <section className='relative h-full w-screen overflow-hidden py-32 md:h-screen'>
+      <div className='container relative flex h-full w-full flex-col items-center justify-center'>
+        <div className='relative z-10 flex flex-col items-center justify-center gap-5'>
+          <h1 className='max-w-xl text-center text-4xl font-medium uppercase tracking-tighter lg:text-6xl'>
+            latest <br /> creations
           </h1>
-          <p
-            className="text-muted-foreground/70 max-w-md text-center text-sm lg:text-base">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-            quos. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Quisquam, quos. Lorem ipsum dolor sit amet consectetur adipisicing
+          <p className='text-muted-foreground/70 max-w-md text-center text-sm lg:text-base'>
+            Fragments of thought, emotion, and vision — translated into art.
+            These works mark new chapters in my journey of expression, where
+            playfulness meets precision, and curiosity shapes every stroke.
           </p>
         </div>
-        <div className="mt-30 flex items-center justify-center border">
+        <div className='mt-30 flex items-center justify-center border'>
           {shuffledImages.map((image) => (
             <motion.div
               key={image.src}
@@ -91,11 +88,13 @@ const Gallery30 = () => {
                 bounce: 0.2,
                 delay: image.delay,
               }}
-              whileDrag={{ zIndex: 20 }}>
+              whileDrag={{ zIndex: 20 }}
+            >
               <img
                 src={image.src}
-                alt=""
-                className="pointer-events-none h-full w-full cursor-grab object-cover shadow-lg active:cursor-grabbing" />
+                alt=''
+                className='pointer-events-none h-full w-full cursor-grab object-cover shadow-lg active:cursor-grabbing'
+              />
             </motion.div>
           ))}
         </div>
@@ -108,22 +107,28 @@ export { Gallery30 };
 
 const Illustration = () => {
   return (
-    <div className="absolute inset-0">
-      <svg viewBox="0 0 1920 1081" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <div className='absolute inset-0'>
+      <svg
+        viewBox='0 0 1920 1081'
+        fill='none'
+        xmlns='http://www.w3.org/2000/svg'
+      >
         <rect
-          x="-356.326"
-          y="-222.305"
-          width="1041.41"
-          height="1041.41"
-          rx="520.707"
-          stroke="#D9D9D9" />
+          x='-356.326'
+          y='-222.305'
+          width='1041.41'
+          height='1041.41'
+          rx='520.707'
+          stroke='#D9D9D9'
+        />
         <rect
-          x="1362.49"
-          y="391.957"
-          width="1041.41"
-          height="1041.41"
-          rx="520.707"
-          stroke="#D9D9D9" />
+          x='1362.49'
+          y='391.957'
+          width='1041.41'
+          height='1041.41'
+          rx='520.707'
+          stroke='#D9D9D9'
+        />
       </svg>
     </div>
   );
