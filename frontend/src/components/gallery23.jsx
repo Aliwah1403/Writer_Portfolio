@@ -57,9 +57,9 @@ const Gallery23 = () => {
               Discover all my stories you were looking for
             </h1>
             <p className='text-md mt-10 max-w-md opacity-55'>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt Lorem ipsum dolor sit amet, consectetur
-              adipiscing{" "}
+              Discover captivating stories, thought-provoking poetry and
+              insightful essays that explore the depths of human experience and
+              emotion
             </p>
             <Button
               variant='default'
