@@ -3,6 +3,7 @@ import { Cta23 } from "@/components/cta23";
 import React from "react";
 import { Gallery23 } from "@/components/gallery23";
 import { Gallery30 } from "@/components/gallery30";
+import AboutSection from "@/components/about-section";
 
 const Homepage = () => {
   return (
@@ -11,6 +12,7 @@ const Homepage = () => {
       {/* Recent Books/Stories */}
       <Gallery23 />
       {/* About Me */}
+      <AboutSection />
       {/* Testimonial from readers */}
       {/* Art Section */}
       <Gallery30 />
