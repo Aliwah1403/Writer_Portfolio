@@ -9,6 +9,7 @@ import Homepage from "./pages/homepage/Homepage";
 import Layout from "./layouts/layout";
 import { Contact2 } from "./components/contact2";
 import { Contact9 } from "./components/contact9";
+import { Contact10 } from "./components/contact10";
 
 const router = createBrowserRouter([
   {
@@ -20,8 +21,8 @@ const router = createBrowserRouter([
       },
       {
         path: "/contact-me",
-        element: <Contact9 />,
-        // element: <Contact2 />,
+        // element: <Contact10 />,
+        element: <Contact2 />,
       },
     ],
   },
