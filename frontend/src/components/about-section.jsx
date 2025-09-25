@@ -82,7 +82,7 @@ export default function AboutSection() {
               </TimelineContent>
             </TimelineContent>
 
-            <div className='mt-12 flex gap-2 justify-between'>
+            <div className='mt-12 flex flex-col lg:flex-row items-center gap-2 justify-between'>
               <TimelineContent
                 as='div'
                 animationNum={4}
@@ -91,14 +91,14 @@ export default function AboutSection() {
                 className='mb-4 sm:text-xl text-xs'
               >
                 <div className=' font-medium text-gray-900 mb-1 capitalize'>
-                  I am Writer Writer and I Will
+                  I am Writer Name and I Will
                 </div>
                 <div className=' text-gray-600 font-semibold uppercase'>
                   INSPIRE YOUR IMAGINATION
                 </div>
               </TimelineContent>
 
-              <div className='flex flex-row gap-3 items-center justify-center'>
+              <div className='flex flex-col lg:flex-row gap-3 items-center justify-center'>
                 <TimelineContent
                   as='button'
                   animationNum={5}
@@ -116,10 +116,9 @@ export default function AboutSection() {
                   timelineRef={heroRef}
                   customVariants={textVariants}
                   className={cn(
-                    buttonVariants({ variant: "outline", }),
+                    buttonVariants({ variant: "outline" }),
                     "h-12"
                   )}
-                
                 >
                   Get In Touch
                   <MoveRight fill='white' size={16} />
