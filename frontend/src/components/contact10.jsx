@@ -47,7 +47,7 @@ const Contact10 = () => {
 
           <div>
             <h2 className='font-semibold'>Follow me</h2>
-            <div className='mt-3 flex gap-6 lg:gap-10'>
+            <div className='mt-3 flex gap-2 lg:gap-3'>
               <a
                 href='#'
                 className='text-muted-foreground hover:text-foreground'
@@ -99,9 +99,9 @@ const Contact10 = () => {
               <Input placeholder='e.g. 10-50' />
             </div> */}
             <div className='space-y-2'>
-              <Label>Tell me about your project, idea or question.</Label>
+              <Label>Message</Label>
               <Textarea
-                placeholder='Write your message'
+                placeholder='Tell me about your project, idea or question.'
                 className='min-h-[120px] resize-none'
               />
             </div>
