@@ -8,12 +8,12 @@ import AboutSection from "@/components/about-section";
 const Homepage = () => {
   return (
     <>
+      {/* Hero */}
       <Hero228 />
       {/* Recent Books/Stories */}
       <Gallery23 />
       {/* About Me */}
       <AboutSection />
-      {/* Testimonial from readers */}
       {/* Art Section */}
       <Gallery30 />
       {/* CTA */}

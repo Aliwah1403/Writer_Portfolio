@@ -1,6 +1,8 @@
 import { TimelineContent } from "@/components/ui/timeline-animation";
 import { Zap, Heart, MoveRight } from "lucide-react";
 import { useRef } from "react";
+import { buttonVariants } from "./ui/button";
+import { cn } from "../lib/utils";
 
 export default function AboutSection() {
   const heroRef = useRef(null);
@@ -113,7 +115,11 @@ export default function AboutSection() {
                   animationNum={5}
                   timelineRef={heroRef}
                   customVariants={textVariants}
-                  className='border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 h-12 px-4 gap-2 rounded-lg inline-flex items-center cursor-pointer'
+                  className={cn(
+                    buttonVariants({ variant: "outline", }),
+                    "h-12"
+                  )}
+                
                 >
                   Get In Touch
                   <MoveRight fill='white' size={16} />
