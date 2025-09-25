@@ -1,4 +1,14 @@
-import { CalendarIcon, HomeIcon, MailIcon, PencilIcon } from "lucide-react";
+import {
+  CalendarIcon,
+  HomeIcon,
+  MailIcon,
+  PencilIcon,
+  MessageCircleIcon,
+  FacebookIcon,
+  PenToolIcon,
+  PaletteIcon,
+  BookOpenIcon,
+} from "lucide-react";
 import React from "react";
 
 import { buttonVariants } from "@/components/ui/button";
@@ -17,6 +27,8 @@ import { AdvancedThemeToggler } from "../AdvancedThemeToggler";
 const Icons = {
   calendar: (props) => <CalendarIcon {...props} />,
   email: (props) => <MailIcon {...props} />,
+  contact: (props) => <MessageCircleIcon {...props} />,
+  facebook: (props) => <FacebookIcon {...props} />,
   linkedin: (props) => (
     <svg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg' {...props}>
       <title>LinkedIn</title>
@@ -61,24 +73,21 @@ const Icons = {
 const DATA = {
   navbar: [
     { href: "#", icon: HomeIcon, label: "Home" },
-    { href: "#", icon: PencilIcon, label: "Blog" },
+    { href: "#", icon: BookOpenIcon, label: "Books" },
+    { href: "#", icon: PenToolIcon, label: "Writings" },
+    { href: "#", icon: PaletteIcon, label: "Art" },
   ],
   contact: {
     social: {
-      GitHub: {
-        name: "GitHub",
+      Facebook: {
+        name: "Facebook",
         url: "#",
-        icon: Icons.github,
+        icon: Icons.facebook,
       },
-      LinkedIn: {
-        name: "LinkedIn",
-        url: "#",
-        icon: Icons.linkedin,
-      },
-      X: {
-        name: "X",
-        url: "#",
-        icon: Icons.x,
+      Contact: {
+        name: "Contact",
+        url: "/contact",
+        icon: Icons.contact,
       },
       email: {
         name: "Send Email",
