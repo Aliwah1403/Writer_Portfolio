@@ -10,6 +10,8 @@ import Layout from "./layouts/layout";
 import { Contact2 } from "./components/contact2";
 import { Contact9 } from "./components/contact9";
 import { Contact10 } from "./components/contact10";
+import { Resources1 } from "./components/resources1";
+import { Blog14 } from "./components/blog14";
 
 const router = createBrowserRouter([
   {
@@ -21,9 +23,12 @@ const router = createBrowserRouter([
       },
       {
         path: "/contact-me",
-        // element: <Contact10 />,
-        element: <Contact9 />,
-        // element: <Contact2 />,
+        element: <Contact10 />,
+      },
+
+      {
+        path: "/writings",
+        element: <Blog14 />,
       },
     ],
   },
