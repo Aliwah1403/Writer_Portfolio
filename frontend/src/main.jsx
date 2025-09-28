@@ -12,6 +12,7 @@ import { Contact9 } from "./components/contact9";
 import { Contact10 } from "./components/contact10";
 import { Resources1 } from "./components/resources1";
 import { Blog14 } from "./components/blog14";
+import Writing from "./components/writing";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: "/writings",
         element: <Blog14 />,
+      },
+      {
+        path: "/writings/story",
+        element: <Writing />,
       },
     ],
   },
