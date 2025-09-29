@@ -13,6 +13,7 @@ import { Contact10 } from "./components/contact10";
 import { Resources1 } from "./components/resources1";
 import { Blog14 } from "./components/blog14";
 import Writing from "./components/writing";
+import BooksPage from "./components/books";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,11 @@ const router = createBrowserRouter([
       {
         path: "/contact-me",
         element: <Contact10 />,
+      },
+
+      {
+        path: "/books",
+        element: <BooksPage />,
       },
 
       {

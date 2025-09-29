@@ -45,11 +45,12 @@ const Blog14 = () => {
         <div className='container'>
           <div className='mb-16 text-center'>
             <h1 className='text-5xl font-medium md:text-6xl'>
-              Explore My Writings
+              Literary Collection
             </h1>
             <p className='mx-auto mt-4 max-w-xl text-lg text-muted-foreground'>
-              Essays, articles, poems and other creative works exploring the
-              intersection of art, literature and human experience
+              A curated selection of poems, essays, articles, and short stories
+              exploring exploring the intersection of art, literature and human
+              experience.
             </p>
           </div>
           <div className='mx-auto max-w-7xl'>
