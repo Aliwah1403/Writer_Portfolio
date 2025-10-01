@@ -14,6 +14,7 @@ import { Resources1 } from "./components/resources1";
 import { Blog14 } from "./components/blog14";
 import Writing from "./components/writing";
 import BooksPage from "./components/books";
+import SingleBook from "./components/single-book";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: "/books",
         element: <BooksPage />,
+      },
+      {
+        path: "/books/title",
+        element: <SingleBook />,
       },
 
       {
