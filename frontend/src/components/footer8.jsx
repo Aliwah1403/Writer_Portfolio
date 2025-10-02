@@ -8,11 +8,11 @@ const sections = [
   {
     title: "Useful Links",
     links: [
-      { name: "Home", href: "#" },
-      { name: "About Me", href: "#" },
-      { name: "Writings", href: "#" },
-      { name: "Art", href: "#" },
-      { name: "Contact Me", href: "#" },
+      { name: "Home", href: "/" },
+      { name: "About Me", href: "/about" },
+      { name: "Writings", href: "/writings" },
+      { name: "Art", href: "/art" },
+      { name: "Contact Me", href: "/contact-me" },
     ],
   },
   // {
@@ -113,7 +113,7 @@ const Footer8 = ({
           <div className='mt-20 flex flex-col justify-between gap-4 border-t pt-8 text-sm font-medium text-muted-foreground lg:flex-row lg:items-center lg:text-left'>
             <p>
               <span className='mr-1 font-bold text-primary'>
-                Writer Name
+                Joeharah Mastura
               </span>
               © All rights reserved.
             </p>

@@ -91,7 +91,7 @@ export default function AboutSection() {
                 className='mb-4 sm:text-xl text-xs'
               >
                 <div className=' font-medium text-gray-900 mb-1 capitalize'>
-                  I am Writer Name and I Will
+                  I am Joehara Mastura and I Will
                 </div>
                 <div className=' text-gray-600 font-semibold uppercase'>
                   INSPIRE YOUR IMAGINATION
@@ -115,10 +115,7 @@ export default function AboutSection() {
                   animationNum={5}
                   timelineRef={heroRef}
                   customVariants={textVariants}
-                  className={cn(
-                    buttonVariants({ variant: "outline" }),
-                    "h-12"
-                  )}
+                  className={cn(buttonVariants({ variant: "outline" }), "h-12")}
                 >
                   Get In Touch
                   <MoveRight fill='white' size={16} />

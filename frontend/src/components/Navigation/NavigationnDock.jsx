@@ -72,10 +72,10 @@ const Icons = {
 
 const DATA = {
   navbar: [
-    { href: "#", icon: HomeIcon, label: "Home" },
-    { href: "#", icon: BookOpenIcon, label: "Books" },
-    { href: "#", icon: PenToolIcon, label: "Writings" },
-    { href: "#", icon: PaletteIcon, label: "Art" },
+    { href: "/", icon: HomeIcon, label: "Home" },
+    { href: "/books", icon: BookOpenIcon, label: "Books" },
+    { href: "/writings", icon: PenToolIcon, label: "Writings" },
+    { href: "/art", icon: PaletteIcon, label: "Art" },
   ],
   contact: {
     social: {
@@ -86,7 +86,7 @@ const DATA = {
       },
       Contact: {
         name: "Contact",
-        url: "/contact",
+        url: "/contact-me",
         icon: Icons.contact,
       },
       email: {
@@ -109,7 +109,7 @@ export function NavigationDock() {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Link
-                    href={item.href}
+                    to={item.href}
                     aria-label={item.label}
                     className={cn(
                       buttonVariants({ variant: "ghost", size: "icon" }),
@@ -131,7 +131,7 @@ export function NavigationDock() {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Link
-                    href={social.url}
+                    to={social.url}
                     aria-label={social.name}
                     className={cn(
                       buttonVariants({ variant: "ghost", size: "icon" }),
