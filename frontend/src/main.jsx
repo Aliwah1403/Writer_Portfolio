@@ -16,6 +16,7 @@ import Writing from "./components/writing";
 import BooksPage from "./components/books";
 import SingleBook from "./components/single-book";
 import ArtGallery from "./components/art-gallery";
+import AboutPage from "./components/about-page";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Homepage />,
+      },
+      {
+        path: "/about",
+        element: <AboutPage />,
       },
       {
         path: "/contact-me",
