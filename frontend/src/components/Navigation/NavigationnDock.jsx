@@ -79,21 +79,21 @@ const DATA = {
   ],
   contact: {
     social: {
-      Facebook: {
-        name: "Facebook",
-        url: "#",
-        icon: Icons.facebook,
-      },
+      // Facebook: {
+      //   name: "Facebook",
+      //   url: "#",
+      //   icon: Icons.facebook,
+      // },
       Contact: {
         name: "Contact",
-        url: "/contact-me",
+        url: "/contact",
         icon: Icons.contact,
       },
-      email: {
-        name: "Send Email",
-        url: "#",
-        icon: Icons.email,
-      },
+      // email: {
+      //   name: "Send Email",
+      //   url: "#",
+      //   icon: Icons.email,
+      // },
     },
   },
 };
@@ -125,7 +125,7 @@ export function NavigationDock() {
               </Tooltip>
             </DockIcon>
           ))}
-          <Separator orientation='vertical' className='h-full' />
+          {/* <Separator orientation='vertical' className='h-full' /> */}
           {Object.entries(DATA.contact.social).map(([name, social]) => (
             <DockIcon key={name}>
               <Tooltip>
