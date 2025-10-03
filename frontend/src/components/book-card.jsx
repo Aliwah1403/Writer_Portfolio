@@ -69,25 +69,24 @@ const BookCard = ({
 
       <CardFooter className='p-6 pt-0 gap-3'>
         <Button
-          variant='outline'
           size='sm'
           className='flex-1'
           //   onClick={handleReadMoreClick}
           data-testid='button-read-more'
         >
-          Read More
+          Read Book
+          <ExternalLink className='w-4 h-4 mr-2' />
         </Button>
-        {status === "published" && (
+        {/* {status === "published" && (
           <Button
             size='sm'
             className='flex-1'
-            // onClick={handlePurchaseClick}
             data-testid='button-purchase'
           >
             <ExternalLink className='w-4 h-4 mr-2' />
             Purchase
           </Button>
-        )}
+        )} */}
       </CardFooter>
     </Card>
   );
