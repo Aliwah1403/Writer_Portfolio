@@ -21,7 +21,7 @@ const books = [
     description:
       "A collection of intimate poetry exploring the delicate moments between night and day, capturing the beauty of quiet transitions and the profound insights found in stillness. Each poem is a meditation on presence and possibility.",
     coverImage:
-      "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/guri3/img5.jpeg",
+      "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/guri3/img11.jpeg",
     publicationYear: 2022,
     genre: "Poetry",
     status: "published",
@@ -32,7 +32,7 @@ const books = [
     description:
       "An upcoming collection of short stories that delve into the complexities of human relationships, featuring characters navigating love, loss, hope, and transformation in contemporary settings.",
     coverImage:
-      "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/guri3/img5.jpeg",
+      "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/guri3/img2.jpeg",
     publicationYear: 2024,
     genre: "Short Stories",
     status: "upcoming",

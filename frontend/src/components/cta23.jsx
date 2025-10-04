@@ -24,7 +24,7 @@ const Cta23 = () => {
           <p className='text-muted-foreground mt-2 text-lg font-medium md:text-center xl:text-xl'>
             Get the <span className='text-primary'>latest updates</span>,{" "}
             <span className='text-primary'>tips</span>, and{" "}
-            <span className='text-primary'>exclusive</span> offers from AlignUI.
+            <span className='text-primary'>exclusive</span> releases from me.
           </p>
 
           {/* Form */}
@@ -46,7 +46,7 @@ const Cta23 = () => {
           <div className='mt-5 flex flex-wrap gap-4 md:justify-center xl:mt-8 xl:gap-7'>
             <div className='flex items-center gap-2 text-sm xl:text-base'>
               <CheckCircle className='h-4 w-4 text-green-500' />
-              Weekly updates
+              Timely updates
             </div>
             <div className='flex items-center gap-2 text-sm xl:text-base'>
               <CheckCircle className='h-4 w-4 text-green-500' />
@@ -54,7 +54,7 @@ const Cta23 = () => {
             </div>
             <div className='flex items-center gap-2 text-sm xl:text-base'>
               <CheckCircle className='h-4 w-4 text-green-500' />
-              Early access for features
+              Early access for readers
             </div>
           </div>
         </div>

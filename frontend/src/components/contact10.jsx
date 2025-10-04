@@ -36,10 +36,10 @@ const Contact10 = () => {
               <div>
                 {/* <p className='text-primary'>Careers</p> */}
                 <a
-                  href='#'
+                  href='mailto:masturajoeharah@gmail.com'
                   className='text-muted-foreground hover:text-foreground'
                 >
-                  support@example.com
+                  masturajoeharah@gmail.com
                 </a>
               </div>
             </div>
@@ -61,7 +61,8 @@ const Contact10 = () => {
                 <Twitter className='size-5' />
               </a> */}
               <a
-                href='#'
+                target='_blank'
+                href='https://www.linkedin.com/in/joeharah-mastura-7a50b6225?/'
                 className='text-muted-foreground hover:text-foreground'
               >
                 <Linkedin className='size-5' />
