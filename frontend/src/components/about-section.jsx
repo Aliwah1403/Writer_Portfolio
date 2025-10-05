@@ -3,6 +3,7 @@ import { Zap, Heart, MoveRight } from "lucide-react";
 import { useRef } from "react";
 import { buttonVariants } from "./ui/button";
 import { cn } from "../lib/utils";
+import { Link } from "react-router";
 
 export default function AboutSection() {
   const heroRef = useRef(null);
@@ -99,27 +100,18 @@ export default function AboutSection() {
               </TimelineContent>
 
               <div className='flex flex-col lg:flex-row gap-3 items-center justify-center'>
-                <TimelineContent
-                  as='button'
-                  animationNum={5}
-                  timelineRef={heroRef}
-                  customVariants={textVariants}
-                  className='bg-primary gap-2 font-medium shadow-lg shadow-primary text-white h-12 px-4 rounded-lg text-sm inline-flex items-center cursor-pointer'
-                >
-                  <Heart fill='white' size={16} />
-                  Explore My Work
-                </TimelineContent>
-
-                <TimelineContent
-                  as='button'
-                  animationNum={5}
-                  timelineRef={heroRef}
-                  customVariants={textVariants}
-                  className={cn(buttonVariants({ variant: "outline" }), "h-12")}
-                >
-                  Get In Touch
-                  <MoveRight fill='white' size={16} />
-                </TimelineContent>
+                <Link to={"/about"}>
+                  <TimelineContent
+                    as='button'
+                    animationNum={5}
+                    timelineRef={heroRef}
+                    customVariants={textVariants}
+                    className='bg-primary gap-2 font-medium shadow-lg shadow-primary text-white h-12 px-4 rounded-lg text-sm inline-flex items-center cursor-pointer'
+                  >
+                    <Heart fill='white' size={16} />
+                    Get To Know Me
+                  </TimelineContent>
+                </Link>
               </div>
             </div>
           </div>
