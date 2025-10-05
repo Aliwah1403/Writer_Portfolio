@@ -43,15 +43,15 @@ const Footer8 = ({
             <div className='col-span-5 flex w-full flex-col gap-6 lg:col-span-3'>
               {/* Logo */}
               <div className='flex items-center gap-2 lg:justify-start'>
-                <a href='https://shadcnblocks.com'>
+                {/* <a href='https://shadcnblocks.com'>
                   <img
                     src={DummyLogo}
                     // alt={logo.alt}
                     // title={logo.title}
                     className='h-8'
                   />
-                </a>
-                <h2 className='text-xl font-semibold'>{logo.title}</h2>
+                </a> */}
+                <h2 className='text-xl font-semibold font-playfair'>JOEHARAH MASTURA</h2>
               </div>
               <p className='text-muted-foreground'>
                 I write hilarious and heartwarming pieces

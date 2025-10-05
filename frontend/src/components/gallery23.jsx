@@ -61,14 +61,14 @@ const Gallery23 = () => {
               insightful essays that explore the depths of human experience and
               emotion
             </p>
-            <Button
-              variant='default'
-              className='group mt-10 flex w-fit items-center justify-center gap-2 rounded-full tracking-tight'
-            >
-              View all 32
-              {/* <ArrowRight
-                className="size-4 -rotate-45 transition-all ease-out group-hover:rotate-0" /> */}
-            </Button>
+            <Link to={"/books"}>
+              <Button
+                variant='default'
+                className='group mt-10 flex w-fit items-center justify-center gap-2 rounded-full tracking-tight'
+              >
+                View all 32
+              </Button>
+            </Link>
           </div>
           <div className='flex flex-col items-center justify-center gap-1'>
             {images.map((image, index) => (
