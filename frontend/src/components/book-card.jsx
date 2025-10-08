@@ -3,6 +3,7 @@ import { Card, CardContent, CardFooter, CardHeader } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { ExternalLink, Calendar } from "lucide-react";
 import { Button } from "./ui/button";
+import BookCover from "@/assets/BookCover.png";
 
 const BookCard = ({
   title,
@@ -21,7 +22,7 @@ const BookCard = ({
       <CardHeader className='p-0'>
         <div className='aspect-[3/4] overflow-hidden rounded-t-lg'>
           <img
-            src={coverImage}
+            src={coverImage !== null ? coverImage : BookCover}
             alt={`${title} book cover`}
             className='size-full object-cover group-hover:scale-105 transition-transform duration-300'
             data-testid='img-book-cover'

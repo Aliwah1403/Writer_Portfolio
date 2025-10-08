@@ -3,14 +3,14 @@ import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
 import { Grid, List } from "lucide-react";
 import BookCard from "./book-card";
+import BookCover from "@/assets/BookCover.png";
 
 const books = [
   {
     title: "The Silent Garden",
     description:
       "A haunting tale of love, loss, and redemption set against the backdrop of a mysterious garden that holds secrets from the past. This literary masterpiece explores themes of memory, family, and the healing power of nature.",
-    coverImage:
-      "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/guri3/img5.jpeg",
+    coverImage: null,
     publicationYear: 2023,
     genre: "Literary Fiction",
     status: "published",
@@ -149,7 +149,7 @@ const BooksPage = () => {
               >
                 <div className='md:col-span-1'>
                   <img
-                    src={book.coverImage}
+                    src={book.coverImage !== null ? book.coverImage : BookCover}
                     alt={`${book.title} book cover`}
                     className='w-48 h-64 object-cover rounded-lg mx-auto'
                   />
