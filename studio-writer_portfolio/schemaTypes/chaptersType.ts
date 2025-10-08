@@ -33,18 +33,6 @@ export const chaptersType = defineType({
       of: [
         {
           type: 'block',
-          //   styles: [
-          //     {title: 'Normal', value: 'normal'},
-          //     {title: 'H2', value: 'h2'},
-          //     {title: 'H3', value: 'h3'},
-          //     {title: 'Quote', value: 'blockquote'},
-          //   ],
-          //   marks: {
-          //     decorators: [
-          //       {title: 'Strong', value: 'strong'},
-          //       {title: 'Emphasis', value: 'em'},
-          //     ],
-          //   },
         },
       ],
       validation: (rule) => rule.required().min(1).error('Chapter content cannot be empty'),
