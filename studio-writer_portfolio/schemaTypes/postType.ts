@@ -7,6 +7,7 @@ export const postType = defineType({
   fields: [
     defineField({
       name: 'title',
+      title: 'Title',
       type: 'string',
       validation: (rule) => rule.required(),
     }),
@@ -50,6 +51,7 @@ export const postType = defineType({
     }),
     defineField({
       name: 'publishedAt',
+      title: 'Publish Date',
       type: 'datetime',
       options: {
         dateFormat: 'MMMM Do YYYY',
@@ -66,10 +68,12 @@ export const postType = defineType({
     }),
     defineField({
       name: 'image',
+      title: 'Cover Image',
       type: 'image',
     }),
     defineField({
       name: 'body',
+      title: 'Post Content',
       type: 'array',
       of: [{type: 'block'}],
     }),

@@ -5,6 +5,7 @@ import { Cta23 } from "./cta23";
 import { client } from "../sanity/client";
 import { useEffect, useState } from "react";
 import PostCover from "@/assets/PostCover.png";
+import { Link } from "react-router";
 
 const POSTS_QUERY = `*[_type == 'post'] | order(publishAt desc){
    _id,
@@ -128,9 +129,11 @@ const Blog14 = () => {
                   <p className='text-muted-foreground md:max-w-lg'>
                     {posts[0]?.description}
                   </p>
-                  <Button className='mt-auto' size='lg'>
-                    Read More
-                  </Button>
+                  <Link to={`/writings/${posts[0]?.slug}`}>
+                    <Button className='mt-auto' size='lg'>
+                      Read More
+                    </Button>
+                  </Link>
                 </div>
               </div>
             )}
@@ -177,8 +180,8 @@ const Blog14 = () => {
                     {post.description}
                   </p>
                   <a
-                    href='#'
-                    target='_blank'
+                    href={`/writings/${post.slug}`}
+                    // target='_blank'
                     className='inline-flex items-center text-primary hover:underline'
                   >
                     Read more
@@ -225,8 +228,8 @@ const Blog14 = () => {
                     {post.description}
                   </p>
                   <a
-                    href='#'
-                    target='_blank'
+                    href={`/writings/${post.slug}`}
+                    // target='_blank'
                     className='inline-flex items-center text-primary hover:underline'
                   >
                     Read more
