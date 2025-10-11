@@ -1,5 +1,13 @@
 "use client";
-import { Linkedin, Twitter, Facebook, Instagram, ArrowUp } from "lucide-react";
+import {
+  Linkedin,
+  Twitter,
+  Facebook,
+  Instagram,
+  ArrowUp,
+  Loader2,
+  Share,
+} from "lucide-react";
 import { Fragment, useEffect, useState } from "react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -13,6 +21,20 @@ import {
 import { Button } from "@/components/ui/button";
 import { cn } from "../lib/utils";
 import { Separator } from "./ui/separator";
+import { client } from "../sanity/client";
+import { useParams } from "react-router";
+import { getCategoryDisplayName } from "../lib/post_utils";
+
+const SINGLE_POST_QUERY = `*[_type == 'post' && slug.current == $slug][0] {
+   _id,
+  title,
+  "slug": slug.current,
+  description,
+  category,
+  publishedAt,
+  readingTime,
+  body
+}`;
 
 const AUTHOR = {
   image:
@@ -33,18 +55,11 @@ const AUTHOR = {
   ],
 };
 
-const BREADCRUMB = [
-  {
-    label: "Resources",
-    link: "#",
-  },
-  {
-    label: "Blogs",
-    link: "#",
-  },
-];
-
 const SHARE_LINKS = [
+  {
+    icon: Share,
+    url: "#",
+  },
   {
     icon: Twitter,
     url: "#",
@@ -59,15 +74,37 @@ const ARTICLE_DATE = "May 18, 2025";
 const ARTICLE_DURATION = "10 min read";
 
 const Writing = () => {
+  const { slug } = useParams();
+  const [post, setPost] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [activeId, setActiveId] = useState(null);
 
+  // Fetch single post
   useEffect(() => {
-    // Query all h2 elements with IDs that match the chapter anchors
-    const chapterIds = ["heading-1", "heading-2", "heading-3"];
-    const headingElements = chapterIds
-      .map((id) => document.getElementById(id))
-      .filter(Boolean);
+    const fetchPost = async () => {
+      if (!slug) return;
 
+      try {
+        setLoading(true);
+        const data = await client.fetch(SINGLE_POST_QUERY, { slug });
+        setPost(data);
+      } catch (err) {
+        console.error("Error fetching post:", err);
+        setError("Failed to load post. Please try again later.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPost();
+  }, [slug]);
+
+  // Intersection observer for table of contents
+  useEffect(() => {
+    if (!post?.body) return;
+
+    const headingElements = document.querySelectorAll("h2[id]");
     const observer = new window.IntersectionObserver(
       (entries) => {
         const visible = entries.find((entry) => entry.isIntersecting);
@@ -82,9 +119,55 @@ const Writing = () => {
     );
 
     headingElements.forEach((el) => observer.observe(el));
-
     return () => observer.disconnect();
-  }, []);
+  }, [post?.body]);
+
+  // Loading state
+  if (loading) {
+    return (
+      <section className='py-32'>
+        <div className='container'>
+          <div className='flex items-center justify-center min-h-[400px]'>
+            <div className='flex flex-col items-center gap-4'>
+              <Loader2 className='h-8 w-8 animate-spin' />
+              <p className='text-muted-foreground'>Loading post...</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // Error state
+  if (error || !post) {
+    return (
+      <section className='py-32'>
+        <div className='container'>
+          <div className='flex items-center justify-center min-h-[400px]'>
+            <div className='text-center'>
+              <p className='text-destructive mb-4'>
+                {error || "Post not found"}
+              </p>
+              <Button onClick={() => window.location.reload()}>
+                Try Again
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  const BREADCRUMB = [
+    {
+      label: "Writings",
+      link: "/writings",
+    },
+    {
+      label: getCategoryDisplayName(post.title),
+      link: "#",
+    },
+  ];
 
   return (
     <section className='pb-32'>
@@ -95,27 +178,22 @@ const Writing = () => {
               <BreadcrumbBlog breadcrumb={BREADCRUMB} />
               <div className='flex w-full flex-col gap-5'>
                 <div className='text-muted-2-foreground flex items-center justify-center gap-2.5 text-sm font-medium'>
-                  <div>{ARTICLE_DURATION}</div>
+                  <div>{post.readingTime} min read</div>
                   <div>|</div>
-                  <div>{ARTICLE_DATE}</div>
+                  <div>
+                    {new Date(post.publishedAt).toLocaleDateString("en-US", {
+                      month: "long",
+                      day: "numeric",
+                      year: "numeric",
+                    })}
+                  </div>
                 </div>
                 <h1 className='text-center text-[2.5rem] font-semibold leading-[1.2] md:text-5xl lg:text-6xl'>
-                  Building Better Components
+                  {post.title}
                 </h1>
                 <p className='text-foreground text-center text-xl font-semibold leading-[1.4]'>
-                  The best blog is one that captivates readers with engaging,
-                  well-researched content presented in a clear and relatable
-                  way.
+                  {post.description}
                 </p>
-                <div className='flex items-center justify-center gap-2.5'>
-                  {SHARE_LINKS.map((link, index) => (
-                    <Button asChild key={`share-link-${index}`} size='icon'>
-                      <a href={link.url}>
-                        <link.icon />
-                      </a>
-                    </Button>
-                  ))}
-                </div>
               </div>
             </div>
           </div>
@@ -123,89 +201,48 @@ const Writing = () => {
       </div>
       <div className='container pt-20'>
         <div className='relative mx-auto w-full max-w-5xl items-start justify-between gap-20 lg:flex'>
-          {/* Chapters */}
+          {/* Table of Contents */}
 
           <div className='bg-background top-20 flex-1 pb-10 lg:sticky lg:pb-0'>
             <span className='text-lg font-medium'>On this page</span>
             <nav className='mt-4 text-sm'>
               <ul className='space-y-1'>
-                <li>
-                  <a
-                    href='#heading-1'
-                    className={cn(
-                      "block py-1 transition-colors duration-200",
-                      activeId === "heading-1"
-                        ? "text-primary"
-                        : "text-muted-foreground hover:text-primary"
-                    )}
-                  >
-                    How Taxes Work and Why They Matter
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href='#heading-2'
-                    className={cn(
-                      "block py-1 transition-colors duration-200",
-                      activeId === "heading-2"
-                        ? "text-primary"
-                        : "text-muted-foreground hover:text-primary"
-                    )}
-                  >
-                    The Great People&apos;s Rebellion
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href='#heading-3'
-                    className={cn(
-                      "block py-1 transition-colors duration-200",
-                      activeId === "heading-3"
-                        ? "text-primary"
-                        : "text-muted-foreground hover:text-primary"
-                    )}
-                  >
-                    The King&apos;s Plan
-                  </a>
-                </li>
+                {/* Generate TOC from post body headings */}
+                {post.body
+                  ?.filter(
+                    (block) => block._type === "block" && block.style === "h2"
+                  )
+                  .map((heading, index) => (
+                    <li key={index}>
+                      <a
+                        href={`#heading-${index + 1}`}
+                        className={cn(
+                          "block py-1 transition-colors duration-200",
+                          activeId === `heading-${index + 1}`
+                            ? "text-primary"
+                            : "text-muted-foreground hover:text-primary"
+                        )}
+                      >
+                        {heading.children?.[0]?.text || `Section ${index + 1}`}
+                      </a>
+                    </li>
+                  ))}
               </ul>
             </nav>
             <Separator className='my-6' />
             <div className='flex items-center justify-between'>
               <p className='text-sm font-medium'>Share this article</p>
               <ul className='flex gap-2'>
-                <li>
-                  <a
-                    href='#'
-                    className='hover:bg-muted inline-flex rounded-full border p-2 transition-colors'
-                  >
-                    <Facebook className='h-4 w-4' />
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href='#'
-                    className='hover:bg-muted inline-flex rounded-full border p-2 transition-colors'
-                  >
-                    <Twitter className='h-4 w-4' />
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href='#'
-                    className='hover:bg-muted inline-flex rounded-full border p-2 transition-colors'
-                  >
-                    <Linkedin className='h-4 w-4' />
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href='#'
-                    className='hover:bg-muted inline-flex rounded-full border p-2 transition-colors'
-                  >
-                    <Instagram className='h-4 w-4' />
-                  </a>
-                </li>
+                {SHARE_LINKS.map((link, index) => (
+                  <li key={index}>
+                    <a
+                      href={link.url}
+                      className='hover:bg-muted inline-flex rounded-full border p-2 transition-colors'
+                    >
+                      <link.icon className='h-4 w-4' />
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
             <div className='mt-6'>
@@ -227,154 +264,31 @@ const Writing = () => {
           {/* Content */}
           <div className='flex w-full max-w-[40rem] flex-col gap-10'>
             <Author author={AUTHOR} />
-            <div className='prose dark:prose-invert'>
-              <h2>Key Takeaways</h2>
-              <p>
-                • UI components are foundational, reusable elements in web
-                development that encapsulate both design and behavior to promote
-                consistency and efficiency.
-              </p>
-              <p>
-                • Leveraging component libraries and frameworks streamlines the
-                development process and ensures accessibility and cross-device
-                compatibility.
-              </p>
-              <p>
-                • Understanding different types of UI components enables
-                developers to create structured, scalable, and maintainable user
-                interfaces.
-              </p>
+            <div className='prose dark:prose-invert max-w-none'>
+              {post.body?.map((block, index) => {
+                if (block._type === "block") {
+                  const style = block.style || "normal";
+                  const text = block.children?.[0]?.text || "";
 
-              <p>
-                In the evolving landscape of modern web development, UI
-                components have emerged as indispensable tools for crafting
-                user-friendly interfaces. These components, ranging from simple
-                buttons to complex data tables, are the building blocks that
-                help shape the overall user experience. By modularizing the
-                interface into smaller, manageable pieces, UI components not
-                only streamline the development process but also promote
-                consistency across an application's design. As digital products
-                become more complex, the role of well-structured UI components
-                becomes even more critical in meeting user expectations and
-                maintaining code quality.
-              </p>
-              <h2 id='heading-1' className='scroll-mt-24'>
-                The Role of UI Components in Development
-              </h2>
-              <p>
-                UI components serve as self-contained units of functionality and
-                presentation, often designed to be reused across multiple parts
-                of an application. By encapsulating both logic and styling,
-                components reduce duplication and improve the maintainability of
-                codebases. For example, a single button component can be reused
-                with different props or styles, ensuring a uniform look and feel
-                throughout the application. This modular approach also allows
-                for parallel development, where teams can work on separate
-                components without interfering with each other's work.
-              </p>
-              <p>
-                Popular frameworks like React, Vue, and Angular are built around
-                component-based architectures, encouraging developers to think
-                in terms of reusable blocks rather than monolithic pages. This
-                shift not only enhances scalability but also simplifies testing
-                and debugging. Additionally, many UI libraries such as Material
-                UI, Chakra UI, and Radix UI provide pre-built, accessible
-                components that accelerate development and ensure consistency
-                with design systems. Embracing components as first-class
-                citizens in frontend architecture leads to better code
-                organization, faster prototyping, and a more seamless user
-                experience.
-              </p>
-              <h2 id='heading-2' className='scroll-mt-24'>
-                Core Types of UI Components
-              </h2>
-              <h3>1. Input Components</h3>
-              <p>
-                Input components are interactive elements that allow users to
-                provide information. These include text inputs, checkboxes,
-                radio buttons, sliders, and file upload fields. They are
-                essential in forms and user settings, enabling data collection
-                and customization. A well-designed input component handles
-                validation, displays feedback, and provides a seamless
-                experience across different devices and screen readers, ensuring
-                inclusivity and usability.
-              </p>
-              <a href='#'>Explore more</a>
-              <div className='w-full max-w-[40rem] overflow-hidden'>
-                <img
-                  src='https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg'
-                  alt=''
-                  className='size-full object-cover object-center'
-                />
-              </div>
-              <h3>2. Navigation Components</h3>
-              <p>
-                Navigation components guide users through an application's
-                structure. These include elements like top bars, side menus,
-                breadcrumbs, tabs, and pagination. Effective navigation improves
-                discoverability and helps users find the content they need
-                without friction. Good navigation design considers user flow,
-                accessibility (such as keyboard navigation and ARIA labels), and
-                responsiveness, ensuring the interface is intuitive and adaptive
-                to various screen sizes.
-              </p>
-              <div className='w-full max-w-[40rem] overflow-hidden'>
-                <img
-                  src='https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-2.svg'
-                  alt=''
-                  className='size-full object-cover object-center'
-                />
-              </div>
-              <h3>3. Feedback Components</h3>
-              <p>
-                Feedback components provide users with visual or textual cues in
-                response to their actions. Examples include modals, toast
-                notifications, progress bars, and tooltips. These elements
-                inform users about the success or failure of their operations or
-                alert them to required actions. They enhance interactivity and
-                reduce confusion, especially when performing asynchronous
-                actions like form submissions or file uploads.
-              </p>
-              <div className='w-full max-w-[40rem] overflow-hidden'>
-                <img
-                  src='https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-3.svg'
-                  alt=''
-                  className='size-full object-cover object-center'
-                />
-              </div>
-              <h3>4. Layout Components</h3>
-              <p>
-                Layout components organize content visually on the page. Common
-                examples include containers, rows, columns, and grid systems.
-                These components help define the structure of a page and control
-                the spacing, alignment, and responsiveness of child elements. A
-                strong layout system ensures consistency in visual hierarchy and
-                supports scalability as the application grows in complexity.
-              </p>
-              <div className='w-full max-w-[40rem] overflow-hidden'>
-                <img
-                  src='https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-4.svg'
-                  alt=''
-                  className='size-full object-cover object-center'
-                />
-              </div>
-              <h2 id='heading-3' className='scroll-mt-24'>
-                End Paragraph
-              </h2>
-              <p>
-                Mastering the use of UI components is a key step toward building
-                reliable, scalable, and aesthetically consistent web
-                applications. By breaking down interfaces into smaller parts,
-                developers can achieve greater flexibility, encourage reuse, and
-                reduce the likelihood of errors. UI components also bridge the
-                gap between design and development, creating a more
-                collaborative and efficient workflow that benefits both
-                developers and end users.
-              </p>
+                  if (style.startsWith("h")) {
+                    const level = parseInt(style.replace("h", ""));
+                    const id = `heading-${index + 1}`;
+                    const HeadingTag = `h${level}`;
+                    return (
+                      <HeadingTag key={index} id={id} className='scroll-mt-24'>
+                        {text}
+                      </HeadingTag>
+                    );
+                  }
+
+                  return <p key={index}>{text}</p>;
+                }
+                return null;
+              })}
             </div>
 
             {/* Conclusion */}
-            <div className='prose dark:prose-invert bg-muted rounded-lg p-5 [&>h2]:mt-0'>
+            {/* <div className='prose dark:prose-invert bg-muted rounded-lg p-5 [&>h2]:mt-0'>
               <h2>Conclusion</h2>
               <p>
                 UI components are more than just visual elements—they are
@@ -386,9 +300,9 @@ const Writing = () => {
                 remain essential for building user-centric, maintainable digital
                 products.
               </p>
-            </div>
+            </div> */}
 
-            {/* Author */}
+            {/* Author
             <div className='bg-muted flex flex-col gap-4 rounded-lg p-5'>
               <Author author={AUTHOR} />
               <p>{AUTHOR.description}</p>
@@ -401,7 +315,7 @@ const Writing = () => {
                   </Button>
                 ))}
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
