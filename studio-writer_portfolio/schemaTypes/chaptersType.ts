@@ -2,7 +2,7 @@ import {defineField, defineType} from 'sanity'
 
 export const chaptersType = defineType({
   name: 'chapter',
-  title: 'Chapter',
+  title: 'Book Chapters',
   type: 'document',
   fields: [
     defineField({

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
-import { Grid, List, Loader2 } from "lucide-react";
+import { Grid, List, Loader2, ExternalLink } from "lucide-react";
 import BookCard from "./book-card";
 import BookCover from "@/assets/BookCover.png";
 import { client } from "../sanity/client";
@@ -10,6 +10,7 @@ import {
   getBookImageUrl,
   getBookImageAlt,
 } from "../lib/book-utils";
+import { useNavigate } from "react-router";
 
 const BOOKS_QUERY = `*[_type == "books"] | order(publicationYear desc) {
   _id,
@@ -29,6 +30,7 @@ const BOOKS_QUERY = `*[_type == "books"] | order(publicationYear desc) {
 }`;
 
 const BooksPage = () => {
+  const navigate = useNavigate();
   const [viewMode, setVieMode] = useState("grid");
   const [genreFilter, setGenreFilter] = useState("all");
   const [books, setBooks] = useState([]);
@@ -231,14 +233,15 @@ const BooksPage = () => {
                   <p className='text-muted-foreground leading-relaxed mb-4'>
                     {book.description}
                   </p>
-                  <div className='flex gap-3'>
-                    <Button variant='outline' size='sm'>
-                      Read More
-                    </Button>
-                    {book.status === "published" && (
-                      <Button size='sm'>Purchase</Button>
-                    )}
-                  </div>
+                  <Button
+                    size='sm'
+                    className='flex-1'
+                    data-testid='button-read-more'
+                    onClick={() => navigate(`/books/${book.slug.current}`)}
+                  >
+                    Read Book
+                    <ExternalLink className='w-4 h-4 mr-2' />
+                  </Button>
                 </div>
               </div>
             ))}

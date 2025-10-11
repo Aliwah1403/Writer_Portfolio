@@ -10,8 +10,10 @@ import {
   getBookImageUrl,
   getBookImageAlt,
 } from "../lib/book-utils";
+import { Link, useNavigate } from "react-router";
 
 const BookCard = ({
+  slug,
   title,
   description,
   coverImage,
@@ -20,6 +22,7 @@ const BookCard = ({
   status,
   purchaseLink,
 }) => {
+  const navigate = useNavigate();
   return (
     <Card
       className='group hover-elevate transition-all duration-300 h-full flex flex-col'
@@ -75,15 +78,17 @@ const BookCard = ({
       </CardContent>
 
       <CardFooter className='p-6 pt-0 gap-3'>
+        {/* <Link to={`/books/${slug.current}`} className='flex-1'> */}
         <Button
           size='sm'
           className='flex-1'
-          //   onClick={handleReadMoreClick}
           data-testid='button-read-more'
+          onClick={() => navigate(`/books/${slug.current}`)}
         >
           Read Book
           <ExternalLink className='w-4 h-4 mr-2' />
         </Button>
+        {/* </Link> */}
         {/* {status === "published" && (
           <Button
             size='sm'
