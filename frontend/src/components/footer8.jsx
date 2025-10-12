@@ -10,9 +10,9 @@ const sections = [
     links: [
       { name: "Home", href: "/" },
       { name: "About Me", href: "/about" },
-      { name: "Writings", href: "/writings" },
+      { name: "Books", href: "/books" },
       { name: "Art", href: "/art" },
-      { name: "Contact Me", href: "/contact-me" },
+      { name: "Contact Me", href: "/contact" },
     ],
   },
   // {
@@ -39,7 +39,7 @@ const Footer8 = ({
     <section className='py-32'>
       <div className='container'>
         <footer>
-          <div className='grid grid-cols-4 justify-between gap-10 lg:grid-cols-6 lg:text-left'>
+          <div className='grid grid-cols-3 justify-between gap-10 lg:grid-cols-4 lg:text-left'>
             <div className='col-span-5 flex w-full flex-col gap-6 lg:col-span-3'>
               {/* Logo */}
               <div className='flex items-center gap-2 lg:justify-start'>
@@ -51,29 +51,34 @@ const Footer8 = ({
                     className='h-8'
                   />
                 </a> */}
-                <h2 className='text-xl font-semibold font-playfair'>JOEHARAH MASTURA</h2>
+                <h2 className='text-xl font-semibold font-playfair'>
+                  JOEHARAH MASTURA
+                </h2>
               </div>
               <p className='text-muted-foreground'>
                 I write hilarious and heartwarming pieces
               </p>
               <ul className='flex items-center space-x-6'>
-                <li className='font-medium duration-200 hover:scale-110 hover:text-muted-foreground'>
+                {/* <li className='font-medium duration-200 hover:scale-110 hover:text-muted-foreground'>
                   <a href='#'>
                     <FaInstagram className='size-6' />
                   </a>
-                </li>
+                </li> */}
                 <li className='font-medium duration-200 hover:scale-110 hover:text-muted-foreground'>
                   <a href='#'>
                     <FaFacebook className='size-6' />
                   </a>
                 </li>
-                <li className='font-medium duration-200 hover:scale-110 hover:text-muted-foreground'>
+                {/* <li className='font-medium duration-200 hover:scale-110 hover:text-muted-foreground'>
                   <a href='#'>
                     <FaTwitter className='size-6' />
                   </a>
-                </li>
+                </li> */}
                 <li className='font-medium duration-200 hover:scale-110 hover:text-muted-foreground'>
-                  <a href='#'>
+                  <a
+                    target='_blank'
+                    href='https://www.linkedin.com/in/joeharah-mastura-7a50b6225?/'
+                  >
                     <FaLinkedin className='size-6' />
                   </a>
                 </li>
@@ -94,7 +99,7 @@ const Footer8 = ({
                 </ul>
               </div>
             ))}
-            <div className='col-span-4 md:col-span-2'>
+            {/* <div className='col-span-4 md:col-span-2'>
               <h3 className='mb-5 font-medium'>Newsletter</h3>
               <div className='grid gap-1.5'>
                 <div className='flex w-full items-center space-x-2'>
@@ -108,7 +113,7 @@ const Footer8 = ({
                   Privacy Policy
                 </a>
               </p>
-            </div>
+            </div> */}
           </div>
           <div className='mt-20 flex flex-col justify-between gap-4 border-t pt-8 text-sm font-medium text-muted-foreground lg:flex-row lg:items-center lg:text-left'>
             <p>

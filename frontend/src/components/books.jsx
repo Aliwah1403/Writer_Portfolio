@@ -1,54 +1,70 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
-import { Grid, List } from "lucide-react";
+import { Grid, List, Loader2, ExternalLink } from "lucide-react";
 import BookCard from "./book-card";
+import BookCover from "@/assets/BookCover.png";
+import { client } from "../sanity/client";
+import {
+  getGenreDisplayName,
+  getBookImageUrl,
+  getBookImageAlt,
+} from "../lib/book-utils";
+import { useNavigate } from "react-router";
 
-const books = [
-  {
-    title: "The Silent Garden",
-    description:
-      "A haunting tale of love, loss, and redemption set against the backdrop of a mysterious garden that holds secrets from the past. This literary masterpiece explores themes of memory, family, and the healing power of nature.",
-    coverImage:
-      "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/guri3/img5.jpeg",
-    publicationYear: 2023,
-    genre: "Literary Fiction",
-    status: "published",
-    purchaseLink: "https://example.com/silent-garden",
+const BOOKS_QUERY = `*[_type == "books"] | order(publicationYear desc) {
+  _id,
+  title,
+  slug,
+  description,
+  coverImage {
+    asset->{
+      _id,
+      url
+    },
+    alt
   },
-  {
-    title: "Whispers of Dawn",
-    description:
-      "A collection of intimate poetry exploring the delicate moments between night and day, capturing the beauty of quiet transitions and the profound insights found in stillness. Each poem is a meditation on presence and possibility.",
-    coverImage:
-      "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/guri3/img11.jpeg",
-    publicationYear: 2022,
-    genre: "Poetry",
-    status: "published",
-    purchaseLink: "https://example.com/whispers-dawn",
-  },
-  {
-    title: "Tales from the Heart",
-    description:
-      "An upcoming collection of short stories that delve into the complexities of human relationships, featuring characters navigating love, loss, hope, and transformation in contemporary settings.",
-    coverImage:
-      "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/guri3/img2.jpeg",
-    publicationYear: 2024,
-    genre: "Short Stories",
-    status: "upcoming",
-  },
-];
+  publicationYear,
+  genre,
+  status
+}`;
 
 const BooksPage = () => {
+  const navigate = useNavigate();
   const [viewMode, setVieMode] = useState("grid");
   const [genreFilter, setGenreFilter] = useState("all");
+  const [books, setBooks] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const genres = ["all", "Literary Fiction", "Poetry", "Short Stories"];
+  // Fetch books from Sanity
+  useEffect(() => {
+    const fetchBooks = async () => {
+      try {
+        setLoading(true);
+        const data = await client.fetch(BOOKS_QUERY);
+        setBooks(data);
+      } catch (err) {
+        console.error("Error fetching books:", err);
+        setError("Failed to load books. Please try again later.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBooks();
+  }, []);
+
+  // Get unique genres from fetched books
+  const genres = [
+    "all",
+    ...new Set(books.map((book) => getGenreDisplayName(book.genre))),
+  ];
 
   const filteredBooks =
     genreFilter === "all"
       ? books
-      : books.filter((book) => book.genre === genreFilter);
+      : books.filter((book) => getGenreDisplayName(book.genre) === genreFilter);
 
   const handleViewModeChange = (mode) => {
     setVieMode(mode);
@@ -57,6 +73,41 @@ const BooksPage = () => {
   const handleGenreFilter = (genre) => {
     setGenreFilter(genre);
   };
+
+  // Loading state
+  if (loading) {
+    return (
+      <section className='py-32'>
+        <div className='container'>
+          <div className='flex items-center justify-center min-h-[400px]'>
+            <div className='flex flex-col items-center gap-4'>
+              <Loader2 className='h-8 w-8 animate-spin' />
+              <p className='text-muted-foreground'>Loading books...</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // Error state
+  if (error) {
+    return (
+      <section className='py-32'>
+        <div className='container'>
+          <div className='flex items-center justify-center min-h-[400px]'>
+            <div className='text-center'>
+              <p className='text-destructive mb-4'>{error}</p>
+              <Button onClick={() => window.location.reload()}>
+                Try Again
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className='py-32'>
       <div className='container'>
@@ -149,15 +200,17 @@ const BooksPage = () => {
               >
                 <div className='md:col-span-1'>
                   <img
-                    src={book.coverImage}
-                    alt={`${book.title} book cover`}
+                    src={getBookImageUrl(book.coverImage) || BookCover}
+                    alt={getBookImageAlt(book.coverImage, book.title)}
                     className='w-48 h-64 object-cover rounded-lg mx-auto'
                   />
                 </div>
                 <div className='md:col-span-3'>
                   <div className='flex items-start justify-between mb-3'>
                     <div className='flex gap-2'>
-                      <Badge variant='secondary'>{book.genre}</Badge>
+                      <Badge variant='secondary'>
+                        {getGenreDisplayName(book.genre)}
+                      </Badge>
                       <Badge
                         variant={
                           book.status === "published" ? "default" : "outline"
@@ -165,7 +218,9 @@ const BooksPage = () => {
                       >
                         {book.status === "published"
                           ? "Published"
-                          : "Coming Soon"}
+                          : book.status === "upcoming"
+                          ? "Coming Soon"
+                          : "Draft"}
                       </Badge>
                     </div>
                     <span className='text-sm text-muted-foreground'>
@@ -178,14 +233,15 @@ const BooksPage = () => {
                   <p className='text-muted-foreground leading-relaxed mb-4'>
                     {book.description}
                   </p>
-                  <div className='flex gap-3'>
-                    <Button variant='outline' size='sm'>
-                      Read More
-                    </Button>
-                    {book.status === "published" && (
-                      <Button size='sm'>Purchase</Button>
-                    )}
-                  </div>
+                  <Button
+                    size='sm'
+                    className='flex-1'
+                    data-testid='button-read-more'
+                    onClick={() => navigate(`/books/${book.slug.current}`)}
+                  >
+                    Read Book
+                    <ExternalLink className='w-4 h-4 mr-2' />
+                  </Button>
                 </div>
               </div>
             ))}

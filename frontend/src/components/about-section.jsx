@@ -50,18 +50,19 @@ export default function AboutSection() {
               customVariants={revealVariants}
               className='sm:text-4xl text-2xl md:text-5xl !leading-[110%] font-semibold text-gray-900 mb-8'
             >
-              I am{" "}
+              I am a{" "}
               <TimelineContent
                 as='span'
                 animationNum={1}
                 timelineRef={heroRef}
                 customVariants={textVariants}
-                className='text-blue-600 border-2 border-blue-500 inline-block xl:h-16  border-dotted px-2 rounded-md'
+                className='text-blue-600 border-2 border-blue-500 inline-block xl:h-16 border-dotted px-2 rounded-md'
               >
-                weaving
+                storyteller
               </TimelineContent>{" "}
-              stories through words and colors, creating content that speaks to
-              the soul. My goal is to continually{" "}
+              who believes in the power of narrative to transform perspectives.
+              Through prose, poetry, and visual art, I explore what it means to
+              be{" "}
               <TimelineContent
                 as='span'
                 animationNum={2}
@@ -69,9 +70,9 @@ export default function AboutSection() {
                 customVariants={textVariants}
                 className='text-orange-600 border-2 border-orange-500 inline-block xl:h-16 border-dotted px-2 rounded-md'
               >
-                explore
-              </TimelineContent>{" "}
-              the delicate intersection between{" "}
+                human
+              </TimelineContent>
+              —the struggles, the beauty, the in-between moments that invite{" "}
               <TimelineContent
                 as='span'
                 animationNum={3}
@@ -79,8 +80,9 @@ export default function AboutSection() {
                 customVariants={textVariants}
                 className='text-green-600 border-2 border-green-500 inline-block xl:h-16 border-dotted px-2 rounded-md'
               >
-                beauty and meaning.
-              </TimelineContent>
+                reflection
+              </TimelineContent>{" "}
+              and spark connection.
             </TimelineContent>
 
             <div className='mt-12 flex flex-col lg:flex-row items-center gap-2 justify-between'>
@@ -91,10 +93,10 @@ export default function AboutSection() {
                 customVariants={textVariants}
                 className='mb-4 sm:text-xl text-xs'
               >
-                <div className=' font-medium text-gray-900 mb-1 capitalize'>
+                <div className='font-medium text-gray-900 mb-1 capitalize'>
                   I am Joehara Mastura and I Will
                 </div>
-                <div className=' text-gray-600 font-semibold uppercase'>
+                <div className='text-gray-600 font-semibold uppercase'>
                   INSPIRE YOUR IMAGINATION
                 </div>
               </TimelineContent>

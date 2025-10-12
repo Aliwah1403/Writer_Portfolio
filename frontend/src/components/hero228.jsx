@@ -33,43 +33,43 @@ const Hero228 = () => {
       id: 1,
       image:
         "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/lummi/person1.jpeg",
-      name: "Joan Doe",
+      name: "Writer",
     },
     {
       id: 2,
       image:
         "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/lummi/person2.jpeg",
-      name: "Jane Smith",
+      name: "Creator",
     },
     {
       id: 3,
       image:
         "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/lummi/person3.jpeg",
-      name: "John Johnson",
+      name: "Dreamer",
     },
     {
       id: 4,
       image:
         "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/lummi/person4.jpeg",
-      name: "Sarah William",
+      name: "Story Teller",
     },
     {
       id: 5,
       image:
         "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/lummi/person5.jpeg",
-      name: "Michael Brown",
+      name: "Artist",
     },
     {
       id: 6,
       image:
         "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/lummi/bw3.jpeg",
-      name: "Emily Davis",
+      name: "Bard",
     },
     {
       id: 7,
       image:
         "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/lummi/bw11.jpeg",
-      name: "Joson White",
+      name: "Composer",
     },
   ];
 

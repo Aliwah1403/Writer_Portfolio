@@ -17,10 +17,16 @@ import BooksPage from "./components/books";
 import SingleBook from "./components/single-book";
 import ArtGallery from "./components/art-gallery";
 import AboutPage from "./components/about-page";
+import ScrollToTop from "./components/scroll-to-top";
 
 const router = createBrowserRouter([
   {
-    element: <Layout />,
+    element: (
+      <>
+        <ScrollToTop />
+        <Layout />
+      </>
+    ),
     children: [
       {
         path: "/",
@@ -40,7 +46,7 @@ const router = createBrowserRouter([
         element: <BooksPage />,
       },
       {
-        path: "/books/title",
+        path: "/books/:slug",
         element: <SingleBook />,
       },
 
@@ -49,7 +55,7 @@ const router = createBrowserRouter([
         element: <Blog14 />,
       },
       {
-        path: "/writings/story",
+        path: "/writings/:slug",
         element: <Writing />,
       },
       {
