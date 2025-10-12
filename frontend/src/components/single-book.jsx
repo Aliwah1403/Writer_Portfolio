@@ -23,6 +23,7 @@ import { Separator } from "./ui/separator";
 import { Badge } from "./ui/badge";
 import { client } from "../sanity/client";
 import { useParams } from "react-router";
+import { getGenreDisplayName } from "../lib/book-utils";
 
 const SINGLE_BOOK_WITH_CHAPTERS_QUERY = `*[_type == "books" && slug.current == $slug][0] {
   _id,
@@ -233,7 +234,7 @@ const SingleBook = () => {
                   {book.description}
                 </p>
                 <div className='flex items-center justify-center gap-2.5'>
-                  <Badge>{book.genre}</Badge>
+                  <Badge>{getGenreDisplayName(book.genre)}</Badge>
                 </div>
               </div>
             </div>
